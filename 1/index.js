@@ -1,9 +1,10 @@
-const fs = require('fs');
-const xs = fs.readFileSync('input.txt').toString().split("\n").map(x => parseInt(x))
+import { readFileSync } from 'fs';
 
-const inc = xs => xs.reduce((a, c, i) => xs[i] > xs[i-1] ? a + 1 : a, 0);
+const input = readFileSync('input.txt').toString().split('\n').map((x) => parseInt(x, 10));
 
-const grouped = xs => xs.map((x, i) => x + xs[i-1] + xs[i+1])
+const inc = (xs) => xs.reduce((a, _c, i) => (xs[i] > xs[i - 1] ? a + 1 : a), 0);
 
-console.log("Answer part 1: " + inc(xs), ",Answer part 2: " + inc(grouped(xs)) )
+const grouped = (xs) => xs.map((x, i) => x + xs[i - 1] + xs[i + 1]);
 
+// eslint-disable-next-line no-console
+console.log(`Answer part 1: ${inc(input)}`, `Answer part 2: ${inc(grouped(input))}`);
